@@ -1,0 +1,84 @@
+﻿BegClass Form1 Partial(*Yes)
+
+	// Required method for Designer support - do not modify
+	// the contents of this method with the code editor.
+	BegSr InitializeComponent
+		DclFld dataGridViewCellStyle1 Type(System.Windows.Forms.DataGridViewCellStyle) New(*Dft)
+		*this.datagridviewCustomers = *new System.Windows.Forms.DataGridView()
+		*this.Column1 = *new System.Windows.Forms.DataGridViewTextBoxColumn()
+		*this.Column2 = *new System.Windows.Forms.DataGridViewTextBoxColumn()
+		(*this.datagridviewCustomers *As System.ComponentModel.ISupportInitialize).BeginInit()
+		*this.SuspendLayout()
+		//
+		//datagridviewCustomers
+		//
+		*this.datagridviewCustomers.AllowUserToAddRows = *False
+		*this.datagridviewCustomers.AllowUserToDeleteRows = *False
+		*this.datagridviewCustomers.AllowUserToResizeColumns = *False
+		*this.datagridviewCustomers.AllowUserToResizeRows = *False
+		*this.datagridviewCustomers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single
+		dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+		dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+		dataGridViewCellStyle1.Font = *new System.Drawing.Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, (0 *As System.Byte))
+		dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+		dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control
+		dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+		dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True
+		*this.datagridviewCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1
+		*this.datagridviewCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+		*this.datagridviewCustomers.Columns.AddRange(*new System.Windows.Forms.DataGridViewColumn[] {*this.Column1, *this.Column2})
+		*this.datagridviewCustomers.EnableHeadersVisualStyles = *False
+		*this.datagridviewCustomers.Location = *new System.Drawing.Point(30I, 31I)
+		*this.datagridviewCustomers.Name = "datagridviewCustomers"
+		*this.datagridviewCustomers.RowHeadersVisible = *False
+		*this.datagridviewCustomers.RowTemplate.DefaultCellStyle.Font = *new System.Drawing.Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, (0 *As System.Byte))
+		*this.datagridviewCustomers.RowTemplate.Height = 28I
+		*this.datagridviewCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+		*this.datagridviewCustomers.Size = *new System.Drawing.Size(995I, 642I)
+		*this.datagridviewCustomers.TabIndex = 0I
+		//
+		//Column1
+		//
+		*this.Column1.DataPropertyName = "CMCustNo"
+		*this.Column1.HeaderText = "Number"
+		*this.Column1.Name = "Column1"
+		*this.Column1.Width = 175I
+		//
+		//Column2
+		//
+		*this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+		*this.Column2.DataPropertyName = "CMName"
+		*this.Column2.HeaderText = "Name"
+		*this.Column2.Name = "Column2"
+		//
+		//Form1
+		//
+		*this.AutoScaleDimensions = *new System.Drawing.SizeF(9, 20)
+		*this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+		*this.ClientSize = *new System.Drawing.Size(1060I, 732I)
+		*this.Controls.Add(*this.datagridviewCustomers)
+		*this.Name = "Form1"
+		*this.Text = "DataGridView populated with a DataTable from a Memory File"
+		(*this.datagridviewCustomers *As System.ComponentModel.ISupportInitialize).EndInit()
+		*this.ResumeLayout(*False)
+	EndSr
+	
+	DclFld datagridviewCustomers Type(System.Windows.Forms.DataGridView) Access(*Private) WithEvents(*Yes)
+	DclFld Column1 Type(System.Windows.Forms.DataGridViewTextBoxColumn) Access(*Private) WithEvents(*Yes)
+	DclFld Column2 Type(System.Windows.Forms.DataGridViewTextBoxColumn) Access(*Private) WithEvents(*Yes)
+	//Required by the Windows Form Designer
+	DclFld components Type(System.ComponentModel.IContainer) Inz(*Nothing)
+	
+	// Clean up any resources being used.
+	// "disposing" is true if managed resources should be disposed; otherwise, false.
+	BegSr Dispose Access(*Protected) Modifier(*Overrides)
+		DclSrParm disposing Type(*Boolean)
+
+		If (disposing *And (components *NE *Nothing))
+			components.Dispose()
+		EndIf
+			
+		*Base.Dispose(disposing)
+	EndSr
+	
+EndClass

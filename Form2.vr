@@ -1,0 +1,95 @@
+﻿//Using System
+//Using System.Collections
+Using System.Collections.Generic
+//Using System.ComponentModel
+//Using System.Data
+//Using System.Drawing
+//Using System.Text
+//Using System.Windows.Forms
+
+DclNamespace DataModelExamples
+
+BegClass Form2 Extends(System.Windows.Forms.Form) Access(*Public) Partial(*Yes)
+
+    /region Default Constructor
+    
+    BegConstructor Access(*Public)
+        //
+        // Required for Windows Form Designer support
+        //
+        InitializeComponent()
+
+        //
+        // TODO: Add any constructor code after InitializeComponent call
+        //
+    EndConstructor
+
+    /endregion
+
+    DclDB pgmDB DBName("*Public/DG NET Local")
+
+    DclDiskFile  CustomerByName +
+          Type(*Input) +
+          Org(*Indexed) +
+          File("Examples/CMastNewL2") +
+          DB(pgmDB) +
+          ImpOpen(*No)
+
+    DclFld Customers Type(List(*Of DataModels.CustomerModel)) 
+
+    BegSr Form2_Load Access(*Private) Event(*this.Load)
+        DclSrParm sender Type(*Object)
+        DclSrParm e Type(System.EventArgs)
+
+        datagridviewCustomers.AutoGenerateColumns = *False
+        ReadRows()
+    EndSr
+
+    BegSr OpenData
+        Connect pgmDB 
+        Open CustomerByName 
+    EndSr 
+
+    BegSr CloseData
+        Close *All
+        Disconnect pgmDB 
+    EndSr
+
+    BegSr ReadRows
+        DclFld Customer Type(DataModels.CustomerModel) 
+
+        // Declare a list of customers
+        Customers = *New List(*Of DataModels.CustomerModel)()  
+
+        OpenData()
+
+        Do FromVal(1) ToVal(14)
+            Read CustomerByName
+            // Instance a customer model for the row just read. 
+            Customer = *New DataModels.CustomerModel()
+            // Populate fields 
+            PopulateCustomerModelFromFormat(Customer)
+            Customers.Add(Customer) 
+        EndDo 
+
+        CloseData()
+        
+        datagridviewCustomers.DataSource = Customers
+    EndSr
+
+    BegSr PopulateCustomerModelFromFormat Access(*Public)
+        DclSrParm Model Type(DataModels.CustomerModel)
+
+        Model.CMCustNo = CMCustNo
+        Model.CMName = CMName
+        Model.CMAddr1 = CMAddr1
+        Model.CMCity = CMCity
+        Model.CMState = CMState
+        Model.CMCntry = CMCntry
+        Model.CMPostCode = CMPostCode
+        Model.CMActive = CMActive
+        Model.CMFax = CMFax
+        Model.CMPhone = CMPhone
+    EndSr
+
+EndClass

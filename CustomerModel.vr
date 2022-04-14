@@ -1,0 +1,63 @@
+﻿Using System
+Using System.Data
+Using System.Reflection
+
+DclNameSpace DataModels
+
+// This class was created with the CreateDGModel utility.
+
+BegClass CustomerModel Access(*Public)
+
+    DclProp CMCustNo Type(System.Decimal) Access(*Public)
+    DclProp CMName Type(System.String) Access(*Public)
+    DclProp CMAddr1 Type(System.String) Access(*Public)
+    DclProp CMCity Type(System.String) Access(*Public)
+    DclProp CMState Type(System.String) Access(*Public)
+    DclProp CMCntry Type(System.String) Access(*Public)
+    DclProp CMPostCode Type(System.String) Access(*Public)
+    DclProp CMActive Type(System.String) Access(*Public)
+    DclProp CMFax Type(System.Decimal) Access(*Public)
+    DclProp CMPhone Type(System.String) Access(*Public)
+
+/*
+These getter and setter methods won't compile because they rely
+on global field names -- which generally come from a locally-scoped
+DclDiskFile's record format. You can either build on this class by 
+adding a DclDiskFile and correpsonding IO operations to it 
+or cut and paste the getter and setter methods to a class that 
+does have the necessary DclDiskFile.
+
+    BegSr PopulateCustomerModelFromFormat Access(*Public)
+        DclSrParm Model Type(DataModels.CustomerModel)
+
+        Model.CMCustNo = CMCustNo
+        Model.CMName = CMName
+        Model.CMAddr1 = CMAddr1
+        Model.CMCity = CMCity
+        Model.CMState = CMState
+        Model.CMCntry = CMCntry
+        Model.CMPostCode = CMPostCode
+        Model.CMActive = CMActive
+        Model.CMFax = CMFax
+        Model.CMPhone = CMPhone
+    EndSr
+
+
+    BegSr PopulateFormatFromCustomerModel Access(*Public)
+        DclSrParm Model Type(DataModels.CustomerModel)
+        CMCustNo = Model.CMCustNo
+        CMName = Model.CMName
+        CMAddr1 = Model.CMAddr1
+        CMCity = Model.CMCity
+        CMState = Model.CMState
+        CMCntry = Model.CMCntry
+        CMPostCode = Model.CMPostCode
+        CMActive = Model.CMActive
+        CMFax = Model.CMFax
+        CMPhone = Model.CMPhone
+    EndSr
+
+*/
+EndClass
+
+        

@@ -1,0 +1,80 @@
+﻿Using System
+Using System.Collections
+Using System.ComponentModel
+Using System.Data
+Using System.Drawing
+Using System.Text
+Using System.Windows.Forms
+
+BegClass Form1 Extends(System.Windows.Forms.Form) Access(*Public) Partial(*Yes)
+
+    /region Default Constructor
+    
+    BegConstructor Access(*Public)
+        //
+        // Required for Windows Form Designer support
+        //
+        InitializeComponent()
+
+        //
+        // TODO: Add any constructor code after InitializeComponent call
+        //
+    EndConstructor
+
+    /endregion
+
+    DclDB pgmDB DBName("*Public/DG NET Local")
+
+    DclDiskFile  CustomerByName +
+          Type(*Input) +
+          Org(*Indexed) +
+          File("Examples/CMastNewL2") +
+          DB(pgmDB) +
+          ImpOpen(*No)
+
+    DclMemoryFile CustomerByNameMF +
+          DBDesc("*Public/DG NET Local") +
+          FileDesc("Examples/CMastNewL2") +
+          RnmFmt(RMemFile)
+
+    BegSr Form1_Load Access(*Private) Event(*this.Load)
+        DclSrParm sender *Object
+        DclSrParm e System.EventArgs
+        
+        datagridviewCustomers.AutoGenerateColumns = *False
+        ReadRows()
+    EndSr
+
+    BegSr OpenData
+        Connect pgmDB 
+        Open CustomerByName 
+    EndSr 
+
+    BegSr CloseData
+        Close *All
+        Disconnect pgmDB 
+    EndSr
+
+    BegSr ReadRows
+        OpenData()
+
+        Do FromVal(1) ToVal(14)
+            Read CustomerByName
+            Write CustomerByNameMF
+        EndDo 
+
+        CloseData()
+
+        datagridviewCustomers.DataSource = CustomerByNameMF.DataSet.Tables[0] 
+    EndSr
+
+    BegSr Form1_DoubleClick Access(*Private) Event(*this.DoubleClick)
+        DclSrParm sender Type(*Object)
+        DclSrParm e Type(System.EventArgs)
+
+        DclFld f2 Type(Form2) New()
+
+        f2.Show()
+    EndSr
+    
+EndClass
